@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -208,6 +210,45 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DB\AspNetRole.cs">
+      <DependentUpon>opensource-manager-model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\AspNetUser.cs">
+      <DependentUpon>opensource-manager-model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\AspNetUserClaim.cs">
+      <DependentUpon>opensource-manager-model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\AspNetUserLogin.cs">
+      <DependentUpon>opensource-manager-model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Card.cs">
+      <DependentUpon>opensource-manager-model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Comment.cs">
+      <DependentUpon>opensource-manager-model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\C__MigrationHistory.cs">
+      <DependentUpon>opensource-manager-model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\List.cs">
+      <DependentUpon>opensource-manager-model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\opensource-manager-model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>opensource-manager-model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\opensource-manager-model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>opensource-manager-model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\opensource-manager-model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>opensource-manager-model.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +261,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DB\opensource-manager-model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>opensource-manager-model.edmx</DependentUpon>
+      <LastGenOutput>opensource-manager-model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DB\opensource-manager-model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>opensource-manager-model.edmx</DependentUpon>
+      <LastGenOutput>opensource-manager-model.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -228,6 +279,13 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="DB\opensource-manager-model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>opensource-manager-model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DB\opensource-manager-model.edmx.diagram">
+      <DependentUpon>opensource-manager-model.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -286,6 +344,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
