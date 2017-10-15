@@ -210,44 +210,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DB\AspNetRole.cs">
-      <DependentUpon>opensource-manager-model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\AspNetUser.cs">
-      <DependentUpon>opensource-manager-model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\AspNetUserClaim.cs">
-      <DependentUpon>opensource-manager-model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\AspNetUserLogin.cs">
-      <DependentUpon>opensource-manager-model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Card.cs">
-      <DependentUpon>opensource-manager-model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Comment.cs">
-      <DependentUpon>opensource-manager-model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\C__MigrationHistory.cs">
-      <DependentUpon>opensource-manager-model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\List.cs">
-      <DependentUpon>opensource-manager-model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\opensource-manager-model.Context.cs">
+    <Compile Include="DB\db.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>opensource-manager-model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\opensource-manager-model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>opensource-manager-model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\opensource-manager-model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>opensource-manager-model.edmx</DependentUpon>
+      <DependentUpon>db.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,16 +227,6 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DB\opensource-manager-model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>opensource-manager-model.edmx</DependentUpon>
-      <LastGenOutput>opensource-manager-model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DB\opensource-manager-model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>opensource-manager-model.edmx</DependentUpon>
-      <LastGenOutput>opensource-manager-model.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -280,12 +236,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="DB\opensource-manager-model.edmx">
+    <EntityDeploy Include="DB\db.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>opensource-manager-model.Designer.cs</LastGenOutput>
+      <LastGenOutput>db.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DB\opensource-manager-model.edmx.diagram">
-      <DependentUpon>opensource-manager-model.edmx</DependentUpon>
+    <Content Include="DB\db.edmx.diagram">
+      <DependentUpon>db.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
