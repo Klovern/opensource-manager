@@ -45,3 +45,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+opensource-manager/.vs/config/applicationhost.config
+# opensource-manager/packages
+# opensource-manager/opensource-manager/DB/db.Designer.cs
