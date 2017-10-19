@@ -1,7 +1,9 @@
 ﻿using Microsoft.Owin;
+using opensource_manager;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(opensource_manager.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
+
 namespace opensource_manager
 {
     public partial class Startup

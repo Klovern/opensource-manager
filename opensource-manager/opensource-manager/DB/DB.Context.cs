@@ -32,11 +32,6 @@ namespace opensource_manager.DB
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<Card> Cards { get; set; }
-        public virtual DbSet<CardActiveUser> CardActiveUsers { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<EventLog> EventLogs { get; set; }
-        public virtual DbSet<List> Lists { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectUser> ProjectUsers { get; set; }
     
@@ -68,6 +63,15 @@ namespace opensource_manager.DB
                 new ObjectParameter("ProjectId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CreateProjectUser", userIdParameter, emailParameter, roleParameter, projectIdParameter, new_identity);
+        }
+    
+        public virtual ObjectResult<sp_RetriveAllProjects_Result> sp_RetriveAllProjects(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetriveAllProjects_Result>("sp_RetriveAllProjects", emailParameter);
         }
     }
 }

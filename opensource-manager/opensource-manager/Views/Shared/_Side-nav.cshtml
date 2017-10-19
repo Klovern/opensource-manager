@@ -1,0 +1,31 @@
+﻿@using opensource_manager.Controllers
+<div id="throbber" style="display:none; min-height:120px;"></div>
+<div id="noty-holder"></div>
+
+<!-- Navigation -->
+<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav side-nav">
+        @if (User.Identity.IsAuthenticated)
+        {
+            {
+                Html.RenderAction("List", "Project");
+
+            }
+        }
+        <a href="@Url.Action("Create", "Project")" class="elements">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"/>
+        </a>
+    </ul>
+</div>
+<!-- /.navbar-collapse
+
+$(function(){
+$('[data-toggle="tooltip"]').tooltip();
+$(".side-nav .collapse").on("hide.bs.collapse", function() {
+$(this).prev().find(".fa").eq(1).removeClass("fa-angle-right").addClass("fa-angle-down");
+});
+$('.side-nav .collapse').on("show.bs.collapse", function() {
+$(this).prev().find(".fa").eq(1).removeClass("fa-angle-down").addClass("fa-angle-right");
+});
+})    -->

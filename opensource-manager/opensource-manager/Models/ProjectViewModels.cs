@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace opensource_manager.Models
 {
@@ -28,6 +24,10 @@ namespace opensource_manager.Models
 
             [EmailAddress]
             public string Email { get; set; }
+        }
+
+        public class sp_RetriveAllProjects_Result
+        {
         }
     }
 }

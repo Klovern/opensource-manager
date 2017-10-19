@@ -61,147 +61,26 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
-  <EntityType Name="Card">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Text" Type="nchar" MaxLength="100" Nullable="false" />
-    <Property Name="Created" Type="datetime" Nullable="false" />
-    <Property Name="CreatorID" Type="int" Nullable="false" />
-    <Property Name="ListID" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CardActiveUser">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="CardID" Type="int" Nullable="false" />
-    <Property Name="Datetime" Type="datetime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Comment">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Text" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="Created" Type="datetime" Nullable="false" />
-    <Property Name="Attatchment" Type="varbinary(max)" />
-    <Property Name="CardID" Type="int" Nullable="false" />
-    <Property Name="CreatorID" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="EventLog">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Datetime" Type="datetime" Nullable="false" />
-    <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="ProjectID" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="List">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Created" Type="datetime" Nullable="false" />
-    <Property Name="CreatorID" Type="int" Nullable="false" />
-    <Property Name="ProjectID" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Project">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ProjectId" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nchar" MaxLength="128" Nullable="false" />
-    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="Project_DateTime" Type="datetime" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="ProjectUsers">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ProjectUserId" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProjectUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Role" Type="varchar" MaxLength="50" />
-    <Property Name="Datetime" Type="datetime" Nullable="false" />
-    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="ProjectUser_DateTime" Type="datetime" Nullable="false" />
+    <Property Name="FK_ProjectId" Type="int" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="128" Nullable="false" />
   </EntityType>
-  <Association Name="FK_Card_List">
-    <End Role="List" Type="Self.List" Multiplicity="1" />
-    <End Role="Card" Type="Self.Card" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="List">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Card">
-        <PropertyRef Name="ListID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Card_User">
-    <End Role="ProjectUsers" Type="Self.ProjectUsers" Multiplicity="1" />
-    <End Role="Card" Type="Self.Card" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Card">
-        <PropertyRef Name="CreatorID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CardActiveUser_Card">
-    <End Role="Card" Type="Self.Card" Multiplicity="1" />
-    <End Role="CardActiveUser" Type="Self.CardActiveUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Card">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CardActiveUser">
-        <PropertyRef Name="CardID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CardActiveUser_User">
-    <End Role="ProjectUsers" Type="Self.ProjectUsers" Multiplicity="1" />
-    <End Role="CardActiveUser" Type="Self.CardActiveUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CardActiveUser">
-        <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comment_Card">
-    <End Role="Card" Type="Self.Card" Multiplicity="1" />
-    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Card">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Comment">
-        <PropertyRef Name="CardID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comment_User">
-    <End Role="ProjectUsers" Type="Self.ProjectUsers" Multiplicity="1" />
-    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Comment">
-        <PropertyRef Name="CreatorID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -258,51 +137,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EventLog_Project">
-    <End Role="Project" Type="Self.Project" Multiplicity="1" />
-    <End Role="EventLog" Type="Self.EventLog" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Project">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="EventLog">
-        <PropertyRef Name="ProjectID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_List_Project">
-    <End Role="Project" Type="Self.Project" Multiplicity="1" />
-    <End Role="List" Type="Self.List" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Project">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="List">
-        <PropertyRef Name="ProjectID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_List_User">
-    <End Role="ProjectUsers" Type="Self.ProjectUsers" Multiplicity="1" />
-    <End Role="List" Type="Self.List" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="List">
-        <PropertyRef Name="CreatorID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ProjectUsers_Project">
     <End Role="Project" Type="Self.Project" Multiplicity="1" />
     <End Role="ProjectUsers" Type="Self.ProjectUsers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Project">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="ProjectId" />
       </Principal>
       <Dependent Role="ProjectUsers">
-        <PropertyRef Name="ProjectID" />
+        <PropertyRef Name="FK_ProjectId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -314,7 +157,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ProjectUsers">
-        <PropertyRef Name="UserID" />
+        <PropertyRef Name="FK_UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -329,6 +172,9 @@
     <Parameter Name="ProjectId" Type="int" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
   </Function>
+  <Function Name="sp_RetriveAllProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+  </Function>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -336,37 +182,8 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CardActiveUser" EntityType="Self.CardActiveUser" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="EventLog" EntityType="Self.EventLog" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectUsers" EntityType="Self.ProjectUsers" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Card_List" Association="Self.FK_Card_List">
-      <End Role="List" EntitySet="List" />
-      <End Role="Card" EntitySet="Card" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Card_User" Association="Self.FK_Card_User">
-      <End Role="ProjectUsers" EntitySet="ProjectUsers" />
-      <End Role="Card" EntitySet="Card" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CardActiveUser_Card" Association="Self.FK_CardActiveUser_Card">
-      <End Role="Card" EntitySet="Card" />
-      <End Role="CardActiveUser" EntitySet="CardActiveUser" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CardActiveUser_User" Association="Self.FK_CardActiveUser_User">
-      <End Role="ProjectUsers" EntitySet="ProjectUsers" />
-      <End Role="CardActiveUser" EntitySet="CardActiveUser" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comment_Card" Association="Self.FK_Comment_Card">
-      <End Role="Card" EntitySet="Card" />
-      <End Role="Comment" EntitySet="Comment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
-      <End Role="ProjectUsers" EntitySet="ProjectUsers" />
-      <End Role="Comment" EntitySet="Comment" />
-    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -382,18 +199,6 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_EventLog_Project" Association="Self.FK_EventLog_Project">
-      <End Role="Project" EntitySet="Project" />
-      <End Role="EventLog" EntitySet="EventLog" />
-    </AssociationSet>
-    <AssociationSet Name="FK_List_Project" Association="Self.FK_List_Project">
-      <End Role="Project" EntitySet="Project" />
-      <End Role="List" EntitySet="List" />
-    </AssociationSet>
-    <AssociationSet Name="FK_List_User" Association="Self.FK_List_User">
-      <End Role="ProjectUsers" EntitySet="ProjectUsers" />
-      <End Role="List" EntitySet="List" />
     </AssociationSet>
     <AssociationSet Name="FK_ProjectUsers_Project" Association="Self.FK_ProjectUsers_Project">
       <End Role="Project" EntitySet="Project" />

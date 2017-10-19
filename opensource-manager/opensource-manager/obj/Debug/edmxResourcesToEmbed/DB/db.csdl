@@ -60,95 +60,28 @@
     <NavigationProperty Name="ProjectUsers" Relationship="Self.FK_ProjectUsers_User" FromRole="AspNetUsers" ToRole="ProjectUsers" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
-  <EntityType Name="Card">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Text" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="CreatorID" Type="Int32" Nullable="false" />
-    <Property Name="ListID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="List" Relationship="Self.FK_Card_List" FromRole="Card" ToRole="List" />
-    <NavigationProperty Name="ProjectUser" Relationship="Self.FK_Card_User" FromRole="Card" ToRole="ProjectUsers" />
-    <NavigationProperty Name="CardActiveUsers" Relationship="Self.FK_CardActiveUser_Card" FromRole="Card" ToRole="CardActiveUser" />
-    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Card" FromRole="Card" ToRole="Comment" />
-  </EntityType>
-  <EntityType Name="CardActiveUser">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserID" Type="Int32" Nullable="false" />
-    <Property Name="CardID" Type="Int32" Nullable="false" />
-    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Card" Relationship="Self.FK_CardActiveUser_Card" FromRole="CardActiveUser" ToRole="Card" />
-    <NavigationProperty Name="ProjectUser" Relationship="Self.FK_CardActiveUser_User" FromRole="CardActiveUser" ToRole="ProjectUsers" />
-  </EntityType>
-  <EntityType Name="Comment">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Text" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Attatchment" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="CardID" Type="Int32" Nullable="false" />
-    <Property Name="CreatorID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Card" Relationship="Self.FK_Comment_Card" FromRole="Comment" ToRole="Card" />
-    <NavigationProperty Name="ProjectUser" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="ProjectUsers" />
-  </EntityType>
-  <EntityType Name="EventLog">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ProjectID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Project" Relationship="Self.FK_EventLog_Project" FromRole="EventLog" ToRole="Project" />
-  </EntityType>
-  <EntityType Name="List">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="CreatorID" Type="Int32" Nullable="false" />
-    <Property Name="ProjectID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Cards" Relationship="Self.FK_Card_List" FromRole="List" ToRole="Card" />
-    <NavigationProperty Name="Project" Relationship="Self.FK_List_Project" FromRole="List" ToRole="Project" />
-    <NavigationProperty Name="ProjectUser" Relationship="Self.FK_List_User" FromRole="List" ToRole="ProjectUsers" />
-  </EntityType>
   <EntityType Name="Project">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ProjectId" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="EventLogs" Relationship="Self.FK_EventLog_Project" FromRole="Project" ToRole="EventLog" />
-    <NavigationProperty Name="Lists" Relationship="Self.FK_List_Project" FromRole="Project" ToRole="List" />
-    <NavigationProperty Name="ProjectUsers" Relationship="Self.FK_ProjectUsers_Project" FromRole="Project" ToRole="ProjectUsers" />
+    <Property Name="Project_DateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProjectUsers" Relationship="Self.FK_ProjectUsers_Project" FromRole="Project" ToRole="ProjectUsers" />
   </EntityType>
   <EntityType Name="ProjectUser">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ProjectUserId" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjectUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="ProjectUser_DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FK_ProjectId" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ProjectUsers_User" FromRole="ProjectUsers" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Cards" Relationship="Self.FK_Card_User" FromRole="ProjectUsers" ToRole="Card" />
-    <NavigationProperty Name="CardActiveUsers" Relationship="Self.FK_CardActiveUser_User" FromRole="ProjectUsers" ToRole="CardActiveUser" />
-    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="ProjectUsers" ToRole="Comment" />
-    <NavigationProperty Name="Lists" Relationship="Self.FK_List_User" FromRole="ProjectUsers" ToRole="List" />
     <NavigationProperty Name="Project" Relationship="Self.FK_ProjectUsers_Project" FromRole="ProjectUsers" ToRole="Project" />
-    <Property Name="Email" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -186,115 +119,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ProjectUsers">
-        <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Card_List">
-    <End Role="List" Type="Self.List" Multiplicity="1" />
-    <End Role="Card" Type="Self.Card" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="List">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Card">
-        <PropertyRef Name="ListID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Card_User">
-    <End Role="ProjectUsers" Type="Self.ProjectUser" Multiplicity="1" />
-    <End Role="Card" Type="Self.Card" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Card">
-        <PropertyRef Name="CreatorID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CardActiveUser_Card">
-    <End Role="Card" Type="Self.Card" Multiplicity="1" />
-    <End Role="CardActiveUser" Type="Self.CardActiveUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Card">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CardActiveUser">
-        <PropertyRef Name="CardID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comment_Card">
-    <End Role="Card" Type="Self.Card" Multiplicity="1" />
-    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Card">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Comment">
-        <PropertyRef Name="CardID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CardActiveUser_User">
-    <End Role="ProjectUsers" Type="Self.ProjectUser" Multiplicity="1" />
-    <End Role="CardActiveUser" Type="Self.CardActiveUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CardActiveUser">
-        <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comment_User">
-    <End Role="ProjectUsers" Type="Self.ProjectUser" Multiplicity="1" />
-    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Comment">
-        <PropertyRef Name="CreatorID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_EventLog_Project">
-    <End Role="Project" Type="Self.Project" Multiplicity="1" />
-    <End Role="EventLog" Type="Self.EventLog" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Project">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="EventLog">
-        <PropertyRef Name="ProjectID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_List_Project">
-    <End Role="Project" Type="Self.Project" Multiplicity="1" />
-    <End Role="List" Type="Self.List" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Project">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="List">
-        <PropertyRef Name="ProjectID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_List_User">
-    <End Role="ProjectUsers" Type="Self.ProjectUser" Multiplicity="1" />
-    <End Role="List" Type="Self.List" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="List">
-        <PropertyRef Name="CreatorID" />
+        <PropertyRef Name="FK_UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -303,10 +128,10 @@
     <End Role="ProjectUsers" Type="Self.ProjectUser" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Project">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="ProjectId" />
       </Principal>
       <Dependent Role="ProjectUsers">
-        <PropertyRef Name="ProjectID" />
+        <PropertyRef Name="FK_ProjectId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -320,11 +145,6 @@
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
-    <EntitySet Name="Cards" EntityType="Self.Card" />
-    <EntitySet Name="CardActiveUsers" EntityType="Self.CardActiveUser" />
-    <EntitySet Name="Comments" EntityType="Self.Comment" />
-    <EntitySet Name="EventLogs" EntityType="Self.EventLog" />
-    <EntitySet Name="Lists" EntityType="Self.List" />
     <EntitySet Name="Projects" EntityType="Self.Project" />
     <EntitySet Name="ProjectUsers" EntityType="Self.ProjectUser" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -338,42 +158,6 @@
     <AssociationSet Name="FK_ProjectUsers_User" Association="Self.FK_ProjectUsers_User">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="ProjectUsers" EntitySet="ProjectUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Card_List" Association="Self.FK_Card_List">
-      <End Role="List" EntitySet="Lists" />
-      <End Role="Card" EntitySet="Cards" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Card_User" Association="Self.FK_Card_User">
-      <End Role="ProjectUsers" EntitySet="ProjectUsers" />
-      <End Role="Card" EntitySet="Cards" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CardActiveUser_Card" Association="Self.FK_CardActiveUser_Card">
-      <End Role="Card" EntitySet="Cards" />
-      <End Role="CardActiveUser" EntitySet="CardActiveUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comment_Card" Association="Self.FK_Comment_Card">
-      <End Role="Card" EntitySet="Cards" />
-      <End Role="Comment" EntitySet="Comments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CardActiveUser_User" Association="Self.FK_CardActiveUser_User">
-      <End Role="ProjectUsers" EntitySet="ProjectUsers" />
-      <End Role="CardActiveUser" EntitySet="CardActiveUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
-      <End Role="ProjectUsers" EntitySet="ProjectUsers" />
-      <End Role="Comment" EntitySet="Comments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_EventLog_Project" Association="Self.FK_EventLog_Project">
-      <End Role="Project" EntitySet="Projects" />
-      <End Role="EventLog" EntitySet="EventLogs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_List_Project" Association="Self.FK_List_Project">
-      <End Role="Project" EntitySet="Projects" />
-      <End Role="List" EntitySet="Lists" />
-    </AssociationSet>
-    <AssociationSet Name="FK_List_User" Association="Self.FK_List_User">
-      <End Role="ProjectUsers" EntitySet="ProjectUsers" />
-      <End Role="List" EntitySet="Lists" />
     </AssociationSet>
     <AssociationSet Name="FK_ProjectUsers_Project" Association="Self.FK_ProjectUsers_Project">
       <End Role="Project" EntitySet="Projects" />
@@ -394,5 +178,14 @@
       <Parameter Name="ProjectId" Mode="In" Type="Int32" />
       <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_RetriveAllProjects" ReturnType="Collection(Model.sp_RetriveAllProjects_Result)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="sp_RetriveAllProjects_Result">
+    <Property Type="Int32" Name="ProjectId" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="128" />
+    <Property Type="DateTime" Name="Project_DateTime" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="128" />
+  </ComplexType>
 </Schema>

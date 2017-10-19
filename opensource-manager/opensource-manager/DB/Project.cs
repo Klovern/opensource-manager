@@ -17,20 +17,14 @@ namespace opensource_manager.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Project()
         {
-            this.EventLogs = new HashSet<EventLog>();
-            this.Lists = new HashSet<List>();
             this.ProjectUsers = new HashSet<ProjectUser>();
         }
     
-        public int Id { get; set; }
+        public int ProjectId { get; set; }
         public string Title { get; set; }
-        public System.DateTime DateTime { get; set; }
+        public System.DateTime Project_DateTime { get; set; }
         public string Email { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EventLog> EventLogs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<List> Lists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectUser> ProjectUsers { get; set; }
     }

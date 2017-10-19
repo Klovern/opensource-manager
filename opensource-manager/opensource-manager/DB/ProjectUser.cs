@@ -14,31 +14,14 @@ namespace opensource_manager.DB
     
     public partial class ProjectUser
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProjectUser()
-        {
-            this.Cards = new HashSet<Card>();
-            this.CardActiveUsers = new HashSet<CardActiveUser>();
-            this.Comments = new HashSet<Comment>();
-            this.Lists = new HashSet<List>();
-        }
-    
-        public int Id { get; set; }
-        public string UserID { get; set; }
+        public int ProjectUserId { get; set; }
+        public string FK_UserId { get; set; }
         public string Role { get; set; }
-        public System.DateTime Datetime { get; set; }
-        public int ProjectID { get; set; }
+        public System.DateTime ProjectUser_DateTime { get; set; }
+        public int FK_ProjectId { get; set; }
         public string Email { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Card> Cards { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CardActiveUser> CardActiveUsers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<List> Lists { get; set; }
         public virtual Project Project { get; set; }
     }
 }

@@ -10,15 +10,12 @@
 namespace opensource_manager.DB
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class EventLog
+    public partial class sp_RetriveAllProjects_Result
     {
-        public int Id { get; set; }
-        public System.DateTime Datetime { get; set; }
-        public string Action { get; set; }
-        public int ProjectID { get; set; }
-    
-        public virtual Project Project { get; set; }
+        public int ProjectId { get; set; }
+        public string Title { get; set; }
+        public System.DateTime Project_DateTime { get; set; }
+        public string Email { get; set; }
     }
 }

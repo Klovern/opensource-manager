@@ -56,86 +56,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Cards">
-      <EntityTypeMapping TypeName="Model.Card">
-        <MappingFragment StoreEntitySet="Card">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="Created" ColumnName="Created" />
-          <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
-          <ScalarProperty Name="ListID" ColumnName="ListID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CardActiveUsers">
-      <EntityTypeMapping TypeName="Model.CardActiveUser">
-        <MappingFragment StoreEntitySet="CardActiveUser">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="CardID" ColumnName="CardID" />
-          <ScalarProperty Name="Datetime" ColumnName="Datetime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Comments">
-      <EntityTypeMapping TypeName="Model.Comment">
-        <MappingFragment StoreEntitySet="Comment">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="Created" ColumnName="Created" />
-          <ScalarProperty Name="Attatchment" ColumnName="Attatchment" />
-          <ScalarProperty Name="CardID" ColumnName="CardID" />
-          <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="EventLogs">
-      <EntityTypeMapping TypeName="Model.EventLog">
-        <MappingFragment StoreEntitySet="EventLog">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Datetime" ColumnName="Datetime" />
-          <ScalarProperty Name="Action" ColumnName="Action" />
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Lists">
-      <EntityTypeMapping TypeName="Model.List">
-        <MappingFragment StoreEntitySet="List">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Created" ColumnName="Created" />
-          <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="Model.Project">
         <MappingFragment StoreEntitySet="Project">
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Project_DateTime" ColumnName="Project_DateTime" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
         </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="Model.Project">
-        <ModificationFunctionMapping>
-          <InsertFunction FunctionName="Model.Store.sp_CreateProject" RowsAffectedParameter="new_identity">
-            <ScalarProperty Name="Title" ParameterName="Title" />
-          </InsertFunction>
-        </ModificationFunctionMapping>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProjectUsers">
       <EntityTypeMapping TypeName="Model.ProjectUser">
         <MappingFragment StoreEntitySet="ProjectUsers">
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProjectUserId" ColumnName="ProjectUserId" />
+          <ScalarProperty Name="FK_UserId" ColumnName="FK_UserId" />
           <ScalarProperty Name="Role" ColumnName="Role" />
-          <ScalarProperty Name="Datetime" ColumnName="Datetime" />
-          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ProjectUser_DateTime" ColumnName="ProjectUser_DateTime" />
+          <ScalarProperty Name="FK_ProjectId" ColumnName="FK_ProjectId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -149,5 +88,15 @@
     </AssociationSetMapping>
     <FunctionImportMapping FunctionImportName="sp_CreateProject" FunctionName="Model.Store.sp_CreateProject" />
     <FunctionImportMapping FunctionImportName="sp_CreateProjectUser" FunctionName="Model.Store.sp_CreateProjectUser" />
+    <FunctionImportMapping FunctionImportName="sp_RetriveAllProjects" FunctionName="Model.Store.sp_RetriveAllProjects">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_RetriveAllProjects_Result">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Project_DateTime" ColumnName="Project_DateTime" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

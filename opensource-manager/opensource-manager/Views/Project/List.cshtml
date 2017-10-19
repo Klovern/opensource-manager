@@ -1,0 +1,19 @@
+﻿@using opensource_manager.DB
+@model opensource_manager.Models.ProjectViewModels.sp_RetriveAllProjects_Result
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<sp_RetriveAllProjects_Result> projects = ViewBag.data;
+}
+
+@foreach (var result in projects)
+            {
+    <ul>
+        <li>@result.Title</li>
+        <li>@result.ProjectId</li>
+        <li>@result.Project_DateTime</li>
+        <li>@result.Email</li>
+    </ul>
+}
+
