@@ -131,6 +131,7 @@
     <NavigationProperty Name="EventLogs" Relationship="Self.FK_EventLog_Project" FromRole="Project" ToRole="EventLog" />
     <NavigationProperty Name="Lists" Relationship="Self.FK_List_Project" FromRole="Project" ToRole="List" />
     <NavigationProperty Name="ProjectUsers" Relationship="Self.FK_ProjectUsers_Project" FromRole="Project" ToRole="ProjectUsers" />
+    <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ProjectUser">
     <Key>
@@ -147,6 +148,7 @@
     <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="ProjectUsers" ToRole="Comment" />
     <NavigationProperty Name="Lists" Relationship="Self.FK_List_User" FromRole="ProjectUsers" ToRole="List" />
     <NavigationProperty Name="Project" Relationship="Self.FK_ProjectUsers_Project" FromRole="ProjectUsers" ToRole="Project" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -387,8 +389,10 @@
     </FunctionImport>
     <FunctionImport Name="sp_CreateProjectUser">
       <Parameter Name="UserId" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
       <Parameter Name="Role" Mode="In" Type="String" />
       <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
 </Schema>

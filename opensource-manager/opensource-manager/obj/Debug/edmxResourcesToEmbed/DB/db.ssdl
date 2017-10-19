@@ -117,6 +117,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nchar" MaxLength="128" Nullable="false" />
     <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="ProjectUsers">
     <Key>
@@ -127,6 +128,7 @@
     <Property Name="Role" Type="varchar" MaxLength="50" />
     <Property Name="Datetime" Type="datetime" Nullable="false" />
     <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="128" Nullable="false" />
   </EntityType>
   <Association Name="FK_Card_List">
     <End Role="List" Type="Self.List" Multiplicity="1" />
@@ -322,8 +324,10 @@
   </Function>
   <Function Name="sp_CreateProjectUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
     <Parameter Name="Role" Type="varchar" Mode="In" />
     <Parameter Name="ProjectId" Type="int" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
   </Function>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />

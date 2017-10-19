@@ -8,13 +8,15 @@ namespace opensource_manager.Models
 {
     public class ProjectViewModels
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
+        public class Invite
+        {
+            public string Recipient { get; set; }
+            public int Id { get; set; }
+        }
 
         public class Project
         {
             [Required]
-            [Display(Name = "Title")]
             public string Title { get; set; }
         }
 
@@ -23,6 +25,9 @@ namespace opensource_manager.Models
             public string UserID { get; set; }
             public string Role { get; set; }
             public int ProjectID { get; set; }
+
+            [EmailAddress]
+            public string Email { get; set; }
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -23,9 +25,45 @@ namespace opensource_manager.Controllers
         }
 
         // GET: Project/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Invite()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Invite(ProjectViewModels.Invite invite)
+        {
+            var gmailClient = new System.Net.Mail.SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                UseDefaultCredentials = false,
+                Credentials = new System.Net.NetworkCredential("oskar.kindeland@gmail.com", "*******")
+            };
+
+            using (var msg = new System.Net.Mail.MailMessage("Oskar.kindeland@gmail.com", "Wobbler160@hotmail.com", "OSM invite", "hello"))
+            {
+                try
+                {
+                    gmailClient.Send(msg);
+
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+
+            return Redirect("index");
         }
 
         // POST: Project/Create       
@@ -37,7 +75,6 @@ namespace opensource_manager.Controllers
             {
                 ObjectParameter Output = new ObjectParameter("new_identity", typeof(Int32));
                 var CreateProjectQuery = context.sp_CreateProject(projectmodel.Title, Output);
-                int projectId = int.Parse(Output.Value.ToString());
 
                 if (CreateProjectQuery != 1)
                 {
@@ -45,7 +82,7 @@ namespace opensource_manager.Controllers
                     return View();
                 }
 
-                var CreateUserQuery = context.sp_CreateProjectUser(User.Identity.GetUserId(), "Creator", projectId);
+                var CreateUserQuery = context.sp_CreateProjectUser(User.Identity.GetUserId(), User.Identity.Name, "Creator", int.Parse(Output.Value.ToString()), Output);
 
                 if (CreateUserQuery != 1)
                 {
@@ -53,6 +90,8 @@ namespace opensource_manager.Controllers
                     return View();
                 }
             }
+
+
             return View();
         }
 
