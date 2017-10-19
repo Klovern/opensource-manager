@@ -115,7 +115,15 @@
         <MappingFragment StoreEntitySet="Project">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
         </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="Model.Project">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="Model.Store.sp_CreateProject" RowsAffectedParameter="new_identity">
+            <ScalarProperty Name="Title" ParameterName="Title" />
+          </InsertFunction>
+        </ModificationFunctionMapping>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProjectUsers">
@@ -137,5 +145,7 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_CreateProject" FunctionName="Model.Store.sp_CreateProject" />
+    <FunctionImportMapping FunctionImportName="sp_CreateProjectUser" FunctionName="Model.Store.sp_CreateProjectUser" />
   </EntityContainerMapping>
 </Mapping>

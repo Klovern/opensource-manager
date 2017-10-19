@@ -11,18 +11,18 @@ namespace opensource_manager.Models
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public class RegisterViewModel
+        public class Project
         {
             [Required]
             [Display(Name = "Title")]
-            public string String { get; set; }
+            public string Title { get; set; }
         }
 
         public class ProjectUser
         {
             public string UserID { get; set; }
             public string Role { get; set; }
-            public int ProjectId { get; set; }
+            public int ProjectID { get; set; }
         }
     }
 }

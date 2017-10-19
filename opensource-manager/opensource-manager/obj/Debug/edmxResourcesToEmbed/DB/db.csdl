@@ -51,7 +51,7 @@
     <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
     <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-    <Property Name="LockoutEndDateUtc" Type="DateTime" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
     <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
     <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
@@ -66,7 +66,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Text" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Created" Type="DateTime" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreatorID" Type="Int32" Nullable="false" />
     <Property Name="ListID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="List" Relationship="Self.FK_Card_List" FromRole="Card" ToRole="List" />
@@ -81,7 +81,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserID" Type="Int32" Nullable="false" />
     <Property Name="CardID" Type="Int32" Nullable="false" />
-    <Property Name="Datetime" Type="DateTime" Nullable="false" />
+    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Card" Relationship="Self.FK_CardActiveUser_Card" FromRole="CardActiveUser" ToRole="Card" />
     <NavigationProperty Name="ProjectUser" Relationship="Self.FK_CardActiveUser_User" FromRole="CardActiveUser" ToRole="ProjectUsers" />
   </EntityType>
@@ -91,7 +91,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Text" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Created" Type="DateTime" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Attatchment" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="CardID" Type="Int32" Nullable="false" />
     <Property Name="CreatorID" Type="Int32" Nullable="false" />
@@ -103,7 +103,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Datetime" Type="DateTime" Nullable="false" />
+    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ProjectID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Project" Relationship="Self.FK_EventLog_Project" FromRole="EventLog" ToRole="Project" />
@@ -114,7 +114,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Created" Type="DateTime" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreatorID" Type="Int32" Nullable="false" />
     <Property Name="ProjectID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Cards" Relationship="Self.FK_Card_List" FromRole="List" ToRole="Card" />
@@ -127,6 +127,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="EventLogs" Relationship="Self.FK_EventLog_Project" FromRole="Project" ToRole="EventLog" />
     <NavigationProperty Name="Lists" Relationship="Self.FK_List_Project" FromRole="Project" ToRole="List" />
     <NavigationProperty Name="ProjectUsers" Relationship="Self.FK_ProjectUsers_Project" FromRole="Project" ToRole="ProjectUsers" />
@@ -138,7 +139,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Datetime" Type="DateTime" Nullable="false" />
+    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ProjectID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ProjectUsers_User" FromRole="ProjectUsers" ToRole="AspNetUsers" />
     <NavigationProperty Name="Cards" Relationship="Self.FK_Card_User" FromRole="ProjectUsers" ToRole="Card" />
@@ -380,5 +381,14 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <FunctionImport Name="sp_CreateProject">
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_CreateProjectUser">
+      <Parameter Name="UserId" Mode="In" Type="String" />
+      <Parameter Name="Role" Mode="In" Type="String" />
+      <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>

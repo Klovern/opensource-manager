@@ -116,6 +116,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nchar" MaxLength="128" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="ProjectUsers">
     <Key>
@@ -315,6 +316,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_CreateProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Title" Type="nchar" Mode="In" />
+    <Parameter Name="new_identity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_CreateProjectUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+    <Parameter Name="Role" Type="varchar" Mode="In" />
+    <Parameter Name="ProjectId" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
