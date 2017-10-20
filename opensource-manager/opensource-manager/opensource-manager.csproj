@@ -297,6 +297,7 @@
     <Content Include="DB\DB.edmx.diagram">
       <DependentUpon>DB.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\nav-bar.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -351,6 +352,7 @@
     <Content Include="Views\Project\List.cshtml" />
     <Content Include="Views\Shared\_Side-nav.cshtml" />
     <Content Include="Views\Shared\_ProjectList.cshtml" />
+    <Content Include="Views\Project\CurrentProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

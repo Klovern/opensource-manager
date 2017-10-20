@@ -5,15 +5,18 @@
     List<sp_RetriveAllProjects_Result> projects = ViewBag.data;
 }
 
-
-@foreach (var result in projects)
+@if (Request.IsAuthenticated)
+{
+    if (projects != null)
+    {
+        <a href="" class="btn btn-info" id="btn-square-micro" type="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false" style="width: 100px;">PROJECTS </a>
+        <div class="dropdown-menu" style="margin-top: 10px; width: 300px; background-color: white; color: white; text-align: left; padding-top: 10px; border: black solid 1px">
+            @foreach (var result in projects)
             {
-    <li>
-        <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i> @result.Title <i class="fa fa-fw fa-angle-down pull-right"></i></a>
-        <ul id="submenu-2" class="collapse">
-            <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.1</a></li>
-            <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.2</a></li>
-            <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.3</a></li>
-        </ul>
-    </li>
+                <a href="/Project/index/@result.ProjectId" class="dropdown-item" style="color: black; font-size: larger;">@result.Title</a>
+                <br/>
+            }
+        </div>
+    }
 }
+

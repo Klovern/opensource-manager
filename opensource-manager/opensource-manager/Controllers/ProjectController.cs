@@ -14,10 +14,18 @@ namespace opensource_manager.Controllers
     public class ProjectController : Controller
     {
         // GET: Project
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View();
+            if (id.Equals(null))
+            {
+                return View();
+            }
+            else 
+            {
+                return View("CurrentProject");
+            }            
         }
+
 
         // GET: Project/Create
         [Authorize]

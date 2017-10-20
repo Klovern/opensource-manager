@@ -1,24 +1,52 @@
 ﻿@using Microsoft.AspNet.Identity
+@Styles.Render("~/Content/css")
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
-    {
-        @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
+    <ul class="nav navbar-nav navbar-right">
 
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", null, new {title = "Manage"})
-            </li>
-            <li>
-                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-            </li>
-        </ul>
-    }
+        <li>
+            <a href="/Project/Create/" class="btn btn-info" id="btn-square-micro"><span class="glyphicon glyphicon-plus" id="align-navbar-item-glyph"></span></a>
+        </li>
+
+        <li>
+            <a href="" class="btn btn-info" id="btn-square-micro"><span class="glyphicon glyphicon-list" id="align-navbar-item-glyph"></span></a>
+
+        <li>
+            <a href="" class="btn btn-info" id="btn-circle-micro" type="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false"><span id="align-navbar-item"><strong>OK</strong></span> </a>
+            <div class="dropdown-menu" style="margin-top: 10px; width: 300px; background-color: white; color: white; text-align: center; padding-top: 10px; border: black solid 1px">
+                <a class="dropdown-item" style="color: black; font-size: larger;">@User.Identity.Name</a>
+                <hr style="width: 80%" />
+                <div style="text-align: left; padding-left: 10px; color: black;">
+                    <a class="dropdown-item"><strong>Settings</strong></a>
+                    <br />
+                    <a class="dropdown-item"><strong>Profile</strong></a>
+                    <br />
+               
+
+
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "dropdown-item" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><strong>Log off</strong></a>
+
+                }
+                </div>
+            </div>
+        </li>
+
+    </ul>
+
+
+
+
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", null, new {id = "registerLink"})</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", null, new {id = "loginLink"})</li>
+        <li>@Html.ActionLink("Register", "Register", "Account", null, new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", null, new { id = "loginLink" })</li>
     </ul>
 }
