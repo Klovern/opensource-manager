@@ -215,6 +215,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -252,6 +253,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\ProjectUser.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ScrumListItem.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\sp_RetriveAllProjects_Result.cs">
@@ -307,6 +311,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\scrum-list-item-ajax.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\side-nav.js" />
@@ -353,9 +358,11 @@
     <Content Include="Views\Shared\_Side-nav.cshtml" />
     <Content Include="Views\Shared\_ProjectList.cshtml" />
     <Content Include="Views\Project\CurrentProject.cshtml" />
+    <Content Include="Views\Project\Board.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Ajax\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

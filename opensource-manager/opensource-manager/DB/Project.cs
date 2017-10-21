@@ -18,6 +18,7 @@ namespace opensource_manager.DB
         public Project()
         {
             this.ProjectUsers = new HashSet<ProjectUser>();
+            this.ScrumListItems = new HashSet<ScrumListItem>();
         }
     
         public int ProjectId { get; set; }
@@ -27,5 +28,7 @@ namespace opensource_manager.DB
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectUser> ProjectUsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ScrumListItem> ScrumListItems { get; set; }
     }
 }

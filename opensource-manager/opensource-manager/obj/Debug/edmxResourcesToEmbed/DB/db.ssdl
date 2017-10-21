@@ -81,6 +81,27 @@
     <Property Name="FK_ProjectId" Type="int" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="128" Nullable="false" />
   </EntityType>
+  <EntityType Name="ScrumListItems">
+    <Key>
+      <PropertyRef Name="BoardId" />
+    </Key>
+    <Property Name="BoardId" Type="int" Nullable="false" />
+    <Property Name="FK_ProjectID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ScrumListItem_DateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Board_ToTable">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="ScrumListItems" Type="Self.ScrumListItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="ScrumListItems">
+        <PropertyRef Name="FK_ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -184,6 +205,11 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectUsers" EntityType="Self.ProjectUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ScrumListItems" EntityType="Self.ScrumListItems" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Board_ToTable" Association="Self.FK_Board_ToTable">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ScrumListItems" EntitySet="ScrumListItems" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />

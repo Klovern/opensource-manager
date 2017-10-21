@@ -11,9 +11,11 @@ using opensource_manager.Models;
 
 namespace opensource_manager.Controllers
 {
+    [RoutePrefix("project")]
     public class ProjectController : Controller
     {
         // GET: Project
+        [Route("{ProjectId}/Index" , Name = "ProjectIndex")]
         public ActionResult Index(int? id)
         {
             if (id.Equals(null))
@@ -27,6 +29,32 @@ namespace opensource_manager.Controllers
         }
 
 
+
+     
+        public ActionResult CreateScrumListItem(string Title, int FK_ProjectID)
+        {
+
+
+            return View();
+
+        }
+
+
+        [HttpGet]
+        [Authorize]
+        [Route("{ProjectId}/board")]
+        public ActionResult Board(int ProjectId)
+        {
+
+            // Logic
+
+            return View();
+
+        }
+
+
+
+
         // GET: Project/Create
         [Authorize]
         public ActionResult Create()
@@ -34,7 +62,7 @@ namespace opensource_manager.Controllers
             return View();
         }
 
-        [Authorize]
+      
         public ActionResult List()
         {
             ICollection<sp_RetriveAllProjects_Result> ResultList = new List<sp_RetriveAllProjects_Result>();

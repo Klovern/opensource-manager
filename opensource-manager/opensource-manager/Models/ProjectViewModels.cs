@@ -4,6 +4,12 @@ namespace opensource_manager.Models
 {
     public class ProjectViewModels
     {
+
+        public class ScrumListItem
+        {
+            public string Title { get; set; }
+            public int Id { get; set; }
+        }
         public class Invite
         {
             public string Recipient { get; set; }

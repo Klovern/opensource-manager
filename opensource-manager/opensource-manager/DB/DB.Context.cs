@@ -34,6 +34,7 @@ namespace opensource_manager.DB
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectUser> ProjectUsers { get; set; }
+        public virtual DbSet<ScrumListItem> ScrumListItems { get; set; }
     
         public virtual int sp_CreateProject(string title, ObjectParameter new_identity)
         {

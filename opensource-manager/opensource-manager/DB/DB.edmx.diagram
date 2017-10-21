@@ -17,6 +17,8 @@
         <AssociationConnector Association="Model.FK_ProjectUsers_User" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_ProjectUsers_Project" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.ScrumListItem" Width="1.5" PointX="8.25" PointY="0.875" />
+        <AssociationConnector Association="Model.FK_Board_ToTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

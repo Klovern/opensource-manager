@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -86,6 +86,27 @@
           <Property Name="FK_ProjectId" Type="int" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="128" Nullable="false" />
         </EntityType>
+        <EntityType Name="ScrumListItems">
+          <Key>
+            <PropertyRef Name="BoardId" />
+          </Key>
+          <Property Name="BoardId" Type="int" Nullable="false" />
+          <Property Name="FK_ProjectID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ScrumListItem_DateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Board_ToTable">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ScrumListItems" Type="Self.ScrumListItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ScrumListItems">
+              <PropertyRef Name="FK_ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -189,6 +210,11 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectUsers" EntityType="Self.ProjectUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScrumListItems" EntityType="Self.ScrumListItems" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Board_ToTable" Association="Self.FK_Board_ToTable">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ScrumListItems" EntitySet="ScrumListItems" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -214,8 +240,7 @@
             <End Role="ProjectUsers" EntitySet="ProjectUsers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -288,6 +313,7 @@
           <Property Name="Project_DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProjectUsers" Relationship="Self.FK_ProjectUsers_Project" FromRole="Project" ToRole="ProjectUsers" />
+          <NavigationProperty Name="ScrumListItems" Relationship="Model.FK_Board_ToTable" FromRole="Project" ToRole="ScrumListItem" />
         </EntityType>
         <EntityType Name="ProjectUser">
           <Key>
@@ -398,8 +424,13 @@
             <Parameter Name="new_identity" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_RetriveAllProjects" ReturnType="Collection(Model.sp_RetriveAllProjects_Result)">
-            <Parameter Name="Email" Mode="In" Type="String" />
+          <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="ScrumListItems" EntityType="Model.ScrumListItem" />
+          <AssociationSet Name="FK_Board_ToTable" Association="Model.FK_Board_ToTable">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ScrumListItem" EntitySet="ScrumListItems" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_RetriveAllProjects_Result">
           <Property Type="Int32" Name="ProjectId" Nullable="false" />
@@ -407,6 +438,28 @@
           <Property Type="DateTime" Name="Project_DateTime" Nullable="false" Precision="23" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="128" />
         </ComplexType>
+        <EntityType Name="ScrumListItem">
+          <Key>
+            <PropertyRef Name="BoardId" />
+          </Key>
+          <Property Name="BoardId" Type="Int32" Nullable="false" />
+          <Property Name="FK_ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ScrumListItem_DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Project" Relationship="Model.FK_Board_ToTable" FromRole="ScrumListItem" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_Board_ToTable">
+          <End Type="Model.Project" Role="Project" Multiplicity="1" />
+          <End Type="Model.ScrumListItem" Role="ScrumListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ScrumListItem">
+              <PropertyRef Name="FK_ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -510,6 +563,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="ScrumListItems">
+            <EntityTypeMapping TypeName="Model.ScrumListItem">
+              <MappingFragment StoreEntitySet="ScrumListItems">
+                <ScalarProperty Name="ScrumListItem_DateTime" ColumnName="ScrumListItem_DateTime" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FK_ProjectID" ColumnName="FK_ProjectID" />
+                <ScalarProperty Name="BoardId" ColumnName="BoardId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

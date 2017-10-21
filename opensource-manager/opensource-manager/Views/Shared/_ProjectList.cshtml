@@ -2,7 +2,12 @@
 @model opensource_manager.Models.ProjectViewModels.sp_RetriveAllProjects_Result
 
 @{
-    List<sp_RetriveAllProjects_Result> projects = ViewBag.data;
+    List<sp_RetriveAllProjects_Result> projects = null;
+    if (ViewBag.Data != null)
+    {
+        projects = ViewBag.data;
+    }
+
 }
 
 @if (Request.IsAuthenticated)
@@ -13,8 +18,8 @@
         <div class="dropdown-menu" style="margin-top: 10px; width: 300px; background-color: white; color: white; text-align: left; padding-top: 10px; border: black solid 1px">
             @foreach (var result in projects)
             {
-                <a href="/Project/index/@result.ProjectId" class="dropdown-item" style="color: black; font-size: larger;">@result.Title</a>
-                <br/>
+                <a href="@Url.RouteUrl("ProjectIndex", new { projectId =  @result.ProjectId })" class="dropdown-item" style="color: black; font-size: larger;">@result.Title</a>
+                <br />
             }
         </div>
     }

@@ -69,6 +69,7 @@
     <Property Name="Project_DateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ProjectUsers" Relationship="Self.FK_ProjectUsers_Project" FromRole="Project" ToRole="ProjectUsers" />
+    <NavigationProperty Name="ScrumListItems" Relationship="Model.FK_Board_ToTable" FromRole="Project" ToRole="ScrumListItem" />
   </EntityType>
   <EntityType Name="ProjectUser">
     <Key>
@@ -181,6 +182,11 @@
     <FunctionImport Name="sp_RetriveAllProjects" ReturnType="Collection(Model.sp_RetriveAllProjects_Result)">
       <Parameter Name="Email" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="ScrumListItems" EntityType="Model.ScrumListItem" />
+    <AssociationSet Name="FK_Board_ToTable" Association="Model.FK_Board_ToTable">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ScrumListItem" EntitySet="ScrumListItems" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_RetriveAllProjects_Result">
     <Property Type="Int32" Name="ProjectId" Nullable="false" />
@@ -188,4 +194,26 @@
     <Property Type="DateTime" Name="Project_DateTime" Nullable="false" Precision="23" />
     <Property Type="String" Name="Email" Nullable="false" MaxLength="128" />
   </ComplexType>
+  <EntityType Name="ScrumListItem">
+    <Key>
+      <PropertyRef Name="BoardId" />
+    </Key>
+    <Property Name="BoardId" Type="Int32" Nullable="false" />
+    <Property Name="FK_ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ScrumListItem_DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Project" Relationship="Model.FK_Board_ToTable" FromRole="ScrumListItem" ToRole="Project" />
+  </EntityType>
+  <Association Name="FK_Board_ToTable">
+    <End Type="Model.Project" Role="Project" Multiplicity="1" />
+    <End Type="Model.ScrumListItem" Role="ScrumListItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="ScrumListItem">
+        <PropertyRef Name="FK_ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
