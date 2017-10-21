@@ -1,11 +1,17 @@
 ﻿$(document).ready(function () {
-    console.log("HEllo");
-    $("#btn-addlist").click(function() {
+
+    var item = {
+        Title: "423 Judy Road",
+        FK_ProjectID: 3
+    };
+
+    $("#btn-addlist").click(function () {
+        console.log("click");
         $.ajax({
+            url: '/project/3/board',
             type: "POST",
-            url: '@Url.Action("CreateScrumListItem", "ProjectController")',
             contentType: "application/json; charset=utf-8",
-            data: { Title: "ThisIsTitle", FK_ProjectID: 4 },
+            data: JSON.stringify(item),
             dataType: "json",
             success: function (recData) { alert('Success'); },
             error: function () { alert('A error'); }

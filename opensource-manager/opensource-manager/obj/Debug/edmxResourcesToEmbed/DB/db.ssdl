@@ -85,7 +85,7 @@
     <Key>
       <PropertyRef Name="BoardId" />
     </Key>
-    <Property Name="BoardId" Type="int" Nullable="false" />
+    <Property Name="BoardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FK_ProjectID" Type="int" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ScrumListItem_DateTime" Type="datetime" Nullable="false" />
@@ -192,6 +192,10 @@
     <Parameter Name="Role" Type="varchar" Mode="In" />
     <Parameter Name="ProjectId" Type="int" Mode="In" />
     <Parameter Name="new_identity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_CreateScrumListItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FK_ProjectID" Type="int" Mode="In" />
+    <Parameter Name="Title" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="sp_RetriveAllProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />

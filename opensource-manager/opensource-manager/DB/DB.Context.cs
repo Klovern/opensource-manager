@@ -74,5 +74,18 @@ namespace opensource_manager.DB
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetriveAllProjects_Result>("sp_RetriveAllProjects", emailParameter);
         }
+    
+        public virtual int sp_CreateScrumListItem(Nullable<int> fK_ProjectID, string title)
+        {
+            var fK_ProjectIDParameter = fK_ProjectID.HasValue ?
+                new ObjectParameter("FK_ProjectID", fK_ProjectID) :
+                new ObjectParameter("FK_ProjectID", typeof(int));
+    
+            var titleParameter = title != null ?
+                new ObjectParameter("Title", title) :
+                new ObjectParameter("Title", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CreateScrumListItem", fK_ProjectIDParameter, titleParameter);
+        }
     }
 }

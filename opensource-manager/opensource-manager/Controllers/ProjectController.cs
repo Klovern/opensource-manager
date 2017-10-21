@@ -29,13 +29,16 @@ namespace opensource_manager.Controllers
         }
 
 
-
-     
-        public ActionResult CreateScrumListItem(string Title, int FK_ProjectID)
+        [HttpPost]
+        [Route("{ProjectId}/board")]
+        public ActionResult CreateScrumListItem(ScrumListItem item)
         {
+            using (var context = new Entities())
+            {
+                var CreateProjectQuery = context.sp_CreateScrumListItem(item.FK_ProjectID, item.Title);
+            }
 
-
-            return View();
+            return Json(new { success = true, responseText = "Added a ListItem!" }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -51,6 +54,7 @@ namespace opensource_manager.Controllers
             return View();
 
         }
+
 
 
 

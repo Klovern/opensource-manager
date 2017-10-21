@@ -187,6 +187,10 @@
       <End Role="Project" EntitySet="Projects" />
       <End Role="ScrumListItem" EntitySet="ScrumListItems" />
     </AssociationSet>
+    <FunctionImport Name="sp_CreateScrumListItem">
+      <Parameter Name="FK_ProjectID" Mode="In" Type="Int32" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_RetriveAllProjects_Result">
     <Property Type="Int32" Name="ProjectId" Nullable="false" />

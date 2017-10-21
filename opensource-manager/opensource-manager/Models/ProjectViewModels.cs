@@ -8,7 +8,7 @@ namespace opensource_manager.Models
         public class ScrumListItem
         {
             public string Title { get; set; }
-            public int Id { get; set; }
+            public int FK_ProjectID { get; set; }
         }
         public class Invite
         {

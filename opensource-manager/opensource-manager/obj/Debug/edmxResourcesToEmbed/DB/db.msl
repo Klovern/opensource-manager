@@ -108,5 +108,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_CreateScrumListItem" FunctionName="Model.Store.sp_CreateScrumListItem" />
   </EntityContainerMapping>
 </Mapping>
