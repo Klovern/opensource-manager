@@ -258,6 +258,9 @@
     <Compile Include="DB\ScrumListItem.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\sp_RetrieveAllScrumListItems_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\sp_RetriveAllProjects_Result.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -311,6 +314,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\poll.js" />
     <Content Include="Scripts\scrum-list-item-ajax.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

@@ -191,6 +191,9 @@
       <Parameter Name="FK_ProjectID" Mode="In" Type="Int32" />
       <Parameter Name="Title" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_RetrieveAllScrumListItems" ReturnType="Collection(Model.sp_RetrieveAllScrumListItems_Result)">
+      <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_RetriveAllProjects_Result">
     <Property Type="Int32" Name="ProjectId" Nullable="false" />
@@ -220,4 +223,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="sp_RetrieveAllScrumListItems_Result">
+    <Property Type="Int32" Name="BoardId" Nullable="false" />
+    <Property Type="Int32" Name="FK_ProjectID" Nullable="false" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="128" />
+    <Property Type="DateTime" Name="ScrumListItem_DateTime" Nullable="false" Precision="23" />
+  </ComplexType>
 </Schema>

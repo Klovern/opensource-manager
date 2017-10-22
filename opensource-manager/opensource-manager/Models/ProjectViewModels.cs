@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace opensource_manager.Models
 {
@@ -34,6 +36,20 @@ namespace opensource_manager.Models
 
         public class sp_RetriveAllProjects_Result
         {
+        }
+
+        public class sp_RetrieveAllScrumListItems_Result
+        {
+            
+        }
+
+        public class AllScrumListItems
+        {
+            // Logic
+
+            public List<DB.sp_RetrieveAllScrumListItems_Result> ResultList { get; set; }
+            public string Title { get; set; }
+            public int id { get; set; }
         }
     }
 }

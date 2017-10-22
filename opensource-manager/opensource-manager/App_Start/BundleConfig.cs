@@ -9,7 +9,8 @@ namespace opensource_manager
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js",
-                "~/Scripts/scrum-list-item-ajax.js"));
+                "~/Scripts/scrum-list-item-ajax.js",
+                "~/Scripts/poll.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                 "~/Scripts/jquery.validate*"));

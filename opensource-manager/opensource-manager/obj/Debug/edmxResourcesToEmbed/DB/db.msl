@@ -109,5 +109,15 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_CreateScrumListItem" FunctionName="Model.Store.sp_CreateScrumListItem" />
+    <FunctionImportMapping FunctionImportName="sp_RetrieveAllScrumListItems" FunctionName="Model.Store.sp_RetrieveAllScrumListItems">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_RetrieveAllScrumListItems_Result">
+          <ScalarProperty Name="BoardId" ColumnName="BoardId" />
+          <ScalarProperty Name="FK_ProjectID" ColumnName="FK_ProjectID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ScrumListItem_DateTime" ColumnName="ScrumListItem_DateTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

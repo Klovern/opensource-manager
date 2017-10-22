@@ -202,6 +202,9 @@
           <Parameter Name="FK_ProjectID" Type="int" Mode="In" />
           <Parameter Name="Title" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_RetrieveAllScrumListItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectId" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_RetriveAllProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
         </Function>
@@ -439,6 +442,9 @@
             <Parameter Name="FK_ProjectID" Mode="In" Type="Int32" />
             <Parameter Name="Title" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_RetrieveAllScrumListItems" ReturnType="Collection(Model.sp_RetrieveAllScrumListItems_Result)">
+          <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_RetriveAllProjects_Result">
           <Property Type="Int32" Name="ProjectId" Nullable="false" />
@@ -468,6 +474,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_RetrieveAllScrumListItems_Result">
+          <Property Type="Int32" Name="BoardId" Nullable="false" />
+          <Property Type="Int32" Name="FK_ProjectID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="128" />
+          <Property Type="DateTime" Name="ScrumListItem_DateTime" Nullable="false" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -582,6 +594,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_CreateScrumListItem" FunctionName="Model.Store.sp_CreateScrumListItem" />
+          <FunctionImportMapping FunctionImportName="sp_RetrieveAllScrumListItems" FunctionName="Model.Store.sp_RetrieveAllScrumListItems">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_RetrieveAllScrumListItems_Result">
+                <ScalarProperty Name="BoardId" ColumnName="BoardId" />
+                <ScalarProperty Name="FK_ProjectID" ColumnName="FK_ProjectID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ScrumListItem_DateTime" ColumnName="ScrumListItem_DateTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -15,17 +18,17 @@ namespace opensource_manager.Controllers
     public class ProjectController : Controller
     {
         // GET: Project
-        [Route("{ProjectId}/Index" , Name = "ProjectIndex")]
+        [Route("{ProjectId}/Index", Name = "ProjectIndex")]
         public ActionResult Index(int? id)
         {
             if (id.Equals(null))
             {
                 return View();
             }
-            else 
+            else
             {
                 return View("CurrentProject");
-            }            
+            }
         }
 
 
@@ -46,17 +49,22 @@ namespace opensource_manager.Controllers
         [HttpGet]
         [Authorize]
         [Route("{ProjectId}/board")]
-        public ActionResult Board(int ProjectId)
+        public ActionResult Board(int projectId)
         {
 
-            // Logic
+            var Result = new ProjectViewModels.AllScrumListItems();
 
-            return View();
+            using (var context = new Entities())
+            {       
+                List<sp_RetrieveAllScrumListItems_Result> tmp = context.sp_RetrieveAllScrumListItems(projectId).ToList();
+                Result.ResultList = tmp;
+                Result.Title = "Hello This is taken frrom somewhere";
+                Result.id = 4; 
+                ViewBag.data = Result;
+                return View();
 
+            }
         }
-
-
-
 
 
         // GET: Project/Create
@@ -66,7 +74,7 @@ namespace opensource_manager.Controllers
             return View();
         }
 
-      
+
         public ActionResult List()
         {
             ICollection<sp_RetriveAllProjects_Result> ResultList = new List<sp_RetriveAllProjects_Result>();
@@ -126,7 +134,7 @@ namespace opensource_manager.Controllers
                 var Output = new ObjectParameter("new_identity", typeof(int));
                 var CreateProjectQuery = context.sp_CreateProject(projectmodel.Title, Output);
 
-                if (CreateProjectQuery != 1)
+                if (CreateProjectQuery == 0)
                     return View();
 
                 var CreateUserQuery = context.sp_CreateProjectUser(User.Identity.GetUserId(), User.Identity.Name,

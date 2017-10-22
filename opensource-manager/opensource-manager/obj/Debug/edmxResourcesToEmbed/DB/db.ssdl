@@ -197,6 +197,9 @@
     <Parameter Name="FK_ProjectID" Type="int" Mode="In" />
     <Parameter Name="Title" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_RetrieveAllScrumListItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectId" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_RetriveAllProjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
   </Function>
