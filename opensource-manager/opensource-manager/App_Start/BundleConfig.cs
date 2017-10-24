@@ -25,6 +25,10 @@ namespace opensource_manager
                 "~/Scripts/respond.js",
                 "~/Scripts/side-nav.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/opensource-manager")
+                .IncludeDirectory("~/Scripts/Controllers", "*.js")
+                .Include("~/Scripts/opensource-manager.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap-flaty.css",
                 "~/Content/Site.css",
