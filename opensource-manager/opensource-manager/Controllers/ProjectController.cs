@@ -49,17 +49,18 @@ namespace opensource_manager.Controllers
         [HttpGet]
         [Authorize]
         [Route("{ProjectId}/board")]
-        public ActionResult Board(int projectId)
+        public ActionResult Board(int ProjectId)
         {
 
             var Result = new ProjectViewModels.AllScrumListItems();
 
             using (var context = new Entities())
-            {       
-                List<sp_RetrieveAllScrumListItems_Result> tmp = context.sp_RetrieveAllScrumListItems(projectId).ToList();
+            {
+                List<sp_RetrieveAllScrumListItems_Result> tmp = context.sp_RetrieveAllScrumListItems(ProjectId).ToList();
+                var currentProject = context.sp_RetriveAllProjects(User.Identity.Name).First(x => x.ProjectId == ProjectId);
                 Result.ResultList = tmp;
-                Result.Title = "Hello This is taken frrom somewhere";
-                Result.id = 4; 
+                Result.Title = currentProject.Title;
+                Result.id = currentProject.ProjectId;
                 ViewBag.data = Result;
                 return View();
 
@@ -72,6 +73,24 @@ namespace opensource_manager.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+
+        public ActionResult LeftNav(int? ProjectId)
+        {
+            Console.WriteLine("In partial controller");
+
+            if (ProjectId != null)
+            {
+                using (var context = new Entities())
+                {
+                    var CurrentProject = context.sp_RetriveAllProjects(User.Identity.Name).First(x => x.ProjectId == ProjectId);
+
+                    ViewBag.data = CurrentProject;
+                }
+                return PartialView("_Side-nav");
+            }
+            return null;
         }
 
 

@@ -16,60 +16,7 @@
         });
 
     };
-
-    console.log($scope.cards);
-    setTimeout(function () {
-        console.log("update");
-        $scope.cards = [
-            {
-                helloAngular: "I do not work!",
-                BoardId: "1",
-                Title: "Todo"
-            },
-            {
-                helloAngular: "Iluul!",
-                BoardId: "32",
-                Title: "Test"
-            },
-            {
-                helloAngular: "I do not work!",
-                BoardId: "s",
-                Title: "Done"
-            },
-            {
-                helloAngular: "I do not work!",
-                BoardId: "s",
-                Title: "Extra"
-            }
-        ];
-        $scope.$digest();
-    }, 3000);
-
-    $scope.updateData = function () {
-        $scope.cards = [
-            {
-                helloAngular: "I do not work!",
-                BoardId: "1",
-                Title: "Todo"
-            },
-            {
-                helloAngular: "Iluul!",
-                BoardId: "32",
-                Title: "Test"
-            },
-            {
-                helloAngular: "I do not work!",
-                BoardId: "s",
-                Title: "Done"
-            },
-            {
-                helloAngular: "I do not work!",
-                BoardId: "s",
-                Title: "Extra"
-            },
-        ];
-        console.log($scope.cards);
-    }
+    console.log($scope.cards);    
 }
 
 

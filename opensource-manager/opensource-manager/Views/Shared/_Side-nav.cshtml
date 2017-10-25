@@ -1,10 +1,18 @@
-﻿<div class="profile" style="padding: 0px; margin: 0px;">
+﻿@using Microsoft.Ajax.Utilities
+@using opensource_manager.DB
+@model opensource_manager.Models.ProjectViewModels.sp_RetriveAllProjects_Result
+
+@{
+    sp_RetriveAllProjects_Result project = ViewBag.data;
+}
+
+<div class="profile" style="padding: 0px; margin: 0px;">
     <div class="profile-sidebar">
         <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
             <div class="profile-usertitle">
                 <div class="profile-usertitle-name">
-                    Project Name
+                  @project.Title
                 </div>
                 <div class="profile-usertitle-job">
                     some other info
@@ -12,16 +20,18 @@
             </div>
             <ul class="nav">
                 <li class="active">
-                    <a href="#">
+                    <a href="index">
                         <i class="glyphicon glyphicon-home"></i>
                         Project Overview
                     </a>
                 </li>
                 <li>
-                    <a href="@Html.ActionLink("Board", "Index", "Home")">
+                    <a href="board">
                         <i class="glyphicon glyphicon-th-list"></i>
                         Scrumboard
                     </a>
+
+
                 </li>
                 <li>
                     <a href="#" target="_blank">
