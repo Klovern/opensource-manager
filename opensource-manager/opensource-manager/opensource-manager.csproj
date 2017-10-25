@@ -331,7 +331,6 @@
     <Content Include="DB\DB.edmx.diagram">
       <DependentUpon>DB.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\nav-bar.less" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-touch.min.js.map" />

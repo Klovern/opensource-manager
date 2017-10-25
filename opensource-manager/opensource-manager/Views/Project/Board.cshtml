@@ -4,21 +4,30 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h3>@ViewBag.data.Title</h3>
 
+<div class="row row-no-padding" ng-app="opensource-manager" ng-controller="ProjectController" ng-init="init(@Json.Encode(ViewBag))">
+    <div class="col-md-2 " ng-repeat="card in cards">
+        <div class="well well-sm" style="border-radius: 5px; background-color: white;">
+            <span id="note" data-pk="1" data-toggle="#pencil" data-original-title="Enter note" tabindex="-1" class="">{{ card.Title }}<a href="#" id="pencil" style="float: right" data-toggle="dropdown"><strong>...</strong></a></span>
 
-<html ng-app="opensource-manager" ng-controller="ProjectController">
-<head>
-    <title ng-bind="models.helloAngular"></title>
-</head>
-<body>
-<input type="text" ng-model="models.helloAngular" />
-<h1>{{models.helloAngular}}</h1>
-
+            <div class="dropdown">
+                <div class="dropdown-menu">
+                    <span style="text-align: center">List action</span>
+                    <hr />
+                    <ul style="list-style-type: none;">
+                        <li><a href="#">Add card</a></li>
+                        <li><a href="#">Delete card</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control input-sm" type="text" id="inputSmall" style="border-radius: 2px; background-color: ghostwhite  ;">
+            </div>
+            <span class="text-muted">Add a card...</span>
+        </div>
+    </div>
+</div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
 @Scripts.Render("~/bundles/opensource-manager")
-</body>
 
-
-
-
-</html>

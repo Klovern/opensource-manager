@@ -10,33 +10,29 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar navbar-default navbar-fixed-top" style="padding: 0px; margin: 0px;">
             <div class="navbar-left">
                 <ul class="nav navbar-nav" style="float: left; padding-left: 20px; padding-top: 3px;">
                     @Html.Action("List", "Project")
                 </ul>
-                </div>
-
-                <div class="navbar-right">
-                    <ul class="nav navbar-nav" style="float: right; padding-right: 20px;">
-                        @Html.Partial("_LoginPartial")
-                    </ul>
-                </div>
             </div>
+
+            <div class="navbar-right">
+                <ul class="nav navbar-nav" style="float: right; padding-right: 20px;">
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 row-no-padding" >
+                @Html.Partial("_Side-nav")
+            </div>
+            <div class="col-md-10">
+                @RenderBody()
+            </div>
+        </div>
     </div>
-
-<div class="row">
-    <div class="col-md-2">
-        
-        @Html.Partial("_Side-nav")
-    </div>
-    
-    <div class="col-md-10">@RenderBody()</div>
-   
-</div>
-   
-
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
