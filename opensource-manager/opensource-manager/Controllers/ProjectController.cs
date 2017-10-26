@@ -34,11 +34,11 @@ namespace opensource_manager.Controllers
 
         [HttpPost]
         [Route("{ProjectId}/board")]
-        public ActionResult CreateScrumListItem(ScrumListItem item)
+        public ActionResult CreateScrumListItem(ProjectViewModels.CreateNewList item)
         {
             using (var context = new Entities())
             {
-                var CreateProjectQuery = context.sp_CreateScrumListItem(item.FK_ProjectID, item.Title);
+                var CreateProjectQuery = context.sp_CreateScrumListItem(item.Id, item.Title);
             }
 
             return Json(new { success = true, responseText = "Added a ListItem!" }, JsonRequestBehavior.AllowGet);

@@ -43,6 +43,12 @@ namespace opensource_manager.Models
             
         }
 
+        public class CreateNewList
+        {
+            public int Id { get; set; }
+            public string Title { get; set; }
+        }
+
         public class AllScrumListItems
         {
             // Logic
