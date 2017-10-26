@@ -45,6 +45,19 @@ namespace opensource_manager.Controllers
 
         }
 
+        [HttpPost]
+        [Route("{ProjectId}/board/delete")]
+        public ActionResult CreateScrumListItem(ProjectViewModels.DeleteScrumListItem item)
+        {
+            using (var context = new Entities())
+            {
+                var CreateProjectQuery = context.sp_DeleteScrumListItem(item.Id);
+            }
+
+            return Json(new { success = true, responseText = "Removed a ListItem!" }, JsonRequestBehavior.AllowGet);
+
+        }
+
 
         [HttpGet]
         [Authorize]

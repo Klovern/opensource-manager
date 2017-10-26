@@ -194,6 +194,10 @@
     <FunctionImport Name="sp_RetrieveAllScrumListItems" ReturnType="Collection(Model.sp_RetrieveAllScrumListItems_Result)">
       <Parameter Name="ProjectId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="EventLogs" EntityType="Model.EventLog" />
+    <FunctionImport Name="sp_DeleteScrumListItem">
+      <Parameter Name="ScrumListId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_RetriveAllProjects_Result">
     <Property Type="Int32" Name="ProjectId" Nullable="false" />
@@ -229,4 +233,12 @@
     <Property Type="String" Name="Title" Nullable="false" MaxLength="128" />
     <Property Type="DateTime" Name="ScrumListItem_DateTime" Nullable="false" Precision="23" />
   </ComplexType>
+  <EntityType Name="EventLog">
+    <Key>
+      <PropertyRef Name="EventLogId" />
+    </Key>
+    <Property Name="EventLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FK_ProjectId" Type="Int32" Nullable="false" />
+    <Property Name="ScrumUpdated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
 </Schema>

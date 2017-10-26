@@ -57,5 +57,10 @@ namespace opensource_manager.Models
             public string Title { get; set; }
             public int id { get; set; }
         }
+
+        public class DeleteScrumListItem
+        {
+            public int Id { get; set; }
+        }
     }
 }

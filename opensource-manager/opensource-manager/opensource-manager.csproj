@@ -249,6 +249,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DB\EventLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Project.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>

@@ -10,18 +10,21 @@
 <div class="row row-no-padding" ng-app="opensource-manager" ng-controller="ProjectController" ng-init="init(@Json.Encode(ViewBag))">
     <div class="col-md-2" ng-repeat="card in cards">
         <div class="well well-sm" style="border-radius: 5px; background-color: white;">
-            <span id="note" data-pk="1" data-toggle="#pencil" data-original-title="Enter note" tabindex="-1" class="">{{ card.Title }}<a href="#" id="pencil" style="float: right" data-toggle="dropdown"><strong>...</strong></a></span>
-
             <div class="dropdown">
+                {{ card.Title }}
+                <button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" type="button" style="float: right; height: 20px; line-height: 20px; text-align: center">
+                    <span style="display: inline-block; vertical-align: middle; line-height: normal; font-size: 10px; color: white">...</span>
+                </button>
                 <div class="dropdown-menu">
                     <span style="text-align: center">List action</span>
                     <hr />
                     <ul style="list-style-type: none;">
                         <li><a href="#">Add card</a></li>
-                        <li><a href="#">Delete card</a></li>
+                        <li><a href="#" class="deleteACard" id="{{ card.BoardId }}">Delete card</a></li>
                     </ul>
                 </div>
             </div>
+
             <div class="form-group createCard" id="{{card.BoardId}}" style="display: none; margin-bottom: 0px; padding-bottom: 0px;">
                 <input class="form-control input-sm createcard" type="text" id="{{ card.BoardId }}" style="border-radius: 2px; background-color: ghostwhite; margin-top: 10px;">
                 <div style="padding-top: 10px">
@@ -77,7 +80,22 @@
             $(".createList").css("display", "inherit");
             $(this).css("display", "none");
         });
+        $(".deleteACard").click(function() {
 
+
+            var model = { Id: $(this).attr('id') };
+            console.log(model.Id);
+           
+            $.ajax({
+                url: '/project/' + @ViewBag.data.id + '/board/delete',
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(model),
+                success: function (recData) { location.reload(); },
+                error: function () { alert('A error'); }
+            });
+
+        });
 
 
         $(".save").click(function () {

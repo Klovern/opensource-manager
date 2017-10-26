@@ -61,6 +61,14 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
+  <EntityType Name="EventLog">
+    <Key>
+      <PropertyRef Name="EventLogId" />
+    </Key>
+    <Property Name="EventLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_ProjectId" Type="int" Nullable="false" />
+    <Property Name="ScrumUpdated" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="Project">
     <Key>
       <PropertyRef Name="ProjectId" />
@@ -197,6 +205,9 @@
     <Parameter Name="FK_ProjectID" Type="int" Mode="In" />
     <Parameter Name="Title" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_DeleteScrumListItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ScrumListId" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_RetrieveAllScrumListItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ProjectId" Type="int" Mode="In" />
   </Function>
@@ -210,6 +221,7 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventLog" EntityType="Self.EventLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectUsers" EntityType="Self.ProjectUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ScrumListItems" EntityType="Self.ScrumListItems" Schema="dbo" store:Type="Tables" />

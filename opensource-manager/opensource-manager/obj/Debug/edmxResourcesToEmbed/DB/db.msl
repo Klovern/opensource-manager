@@ -119,5 +119,15 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="EventLogs">
+      <EntityTypeMapping TypeName="Model.EventLog">
+        <MappingFragment StoreEntitySet="EventLog">
+          <ScalarProperty Name="ScrumUpdated" ColumnName="ScrumUpdated" />
+          <ScalarProperty Name="FK_ProjectId" ColumnName="FK_ProjectId" />
+          <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_DeleteScrumListItem" FunctionName="Model.Store.sp_DeleteScrumListItem" />
   </EntityContainerMapping>
 </Mapping>

@@ -19,6 +19,7 @@
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.ScrumListItem" Width="1.5" PointX="8.25" PointY="0.875" />
         <AssociationConnector Association="Model.FK_Board_ToTable" />
+        <EntityTypeShape EntityType="Model.EventLog" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

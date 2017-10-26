@@ -35,6 +35,7 @@ namespace opensource_manager.DB
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectUser> ProjectUsers { get; set; }
         public virtual DbSet<ScrumListItem> ScrumListItems { get; set; }
+        public virtual DbSet<EventLog> EventLogs { get; set; }
     
         public virtual int sp_CreateProject(string title, ObjectParameter new_identity)
         {
@@ -95,6 +96,15 @@ namespace opensource_manager.DB
                 new ObjectParameter("ProjectId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetrieveAllScrumListItems_Result>("sp_RetrieveAllScrumListItems", projectIdParameter);
+        }
+    
+        public virtual int sp_DeleteScrumListItem(Nullable<int> scrumListId)
+        {
+            var scrumListIdParameter = scrumListId.HasValue ?
+                new ObjectParameter("ScrumListId", scrumListId) :
+                new ObjectParameter("ScrumListId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DeleteScrumListItem", scrumListIdParameter);
         }
     }
 }
