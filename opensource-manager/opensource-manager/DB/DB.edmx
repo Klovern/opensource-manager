@@ -103,7 +103,6 @@
           <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ScrumListItem_DateTime" Type="datetime" Nullable="false" />
           <Property Name="ColumnId" Type="int" Nullable="false" />
-          <Property Name="tmp" Type="nchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK_Board_ToTable">
           <End Role="Project" Type="Self.Project" Multiplicity="1" />
@@ -197,6 +196,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_ChangeScrumListItemColumn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_ProjectId" Type="int" Mode="In" />
+          <Parameter Name="TargetColumn" Type="int" Mode="In" />
+          <Parameter Name="CurrentColumn" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_CreateProject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Title" Type="nchar" Mode="In" />
           <Parameter Name="new_identity" Type="int" Mode="InOut" />
@@ -463,6 +467,11 @@
           <FunctionImport Name="sp_DeleteScrumListItem">
           <Parameter Name="ScrumListId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_ChangeScrumListItemColumn">
+            <Parameter Name="FK_ProjectId" Mode="In" Type="Int32" />
+            <Parameter Name="TargetColumn" Mode="In" Type="Int32" />
+            <Parameter Name="CurrentColumn" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_RetriveAllProjects_Result">
           <Property Type="Int32" Name="ProjectId" Nullable="false" />
@@ -480,7 +489,6 @@
           <Property Name="ScrumListItem_DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Project" Relationship="Model.FK_Board_ToTable" FromRole="ScrumListItem" ToRole="Project" />
           <Property Name="ColumnId" Type="Int32" Nullable="false" />
-          <Property Name="tmp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_Board_ToTable">
           <End Type="Model.Project" Role="Project" Multiplicity="1" />
@@ -615,7 +623,6 @@
           <EntitySetMapping Name="ScrumListItems">
             <EntityTypeMapping TypeName="Model.ScrumListItem">
               <MappingFragment StoreEntitySet="ScrumListItems">
-                <ScalarProperty Name="tmp" ColumnName="tmp" />
                 <ScalarProperty Name="ColumnId" ColumnName="ColumnId" />
                 <ScalarProperty Name="ScrumListItem_DateTime" ColumnName="ScrumListItem_DateTime" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -646,6 +653,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_DeleteScrumListItem" FunctionName="Model.Store.sp_DeleteScrumListItem" />
+          <FunctionImportMapping FunctionImportName="sp_ChangeScrumListItemColumn" FunctionName="Model.Store.sp_ChangeScrumListItemColumn" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

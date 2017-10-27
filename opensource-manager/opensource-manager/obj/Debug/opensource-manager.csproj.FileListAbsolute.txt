@@ -100,4 +100,5 @@ C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-m
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\obj\Debug\opensource-manager.dll
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\obj\Debug\opensource-manager.pdb
+C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\obj\Debug\opensource-manager.csprojResolveAssemblyReference.cache
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\roslyn\System.IO.FileSystem.dll

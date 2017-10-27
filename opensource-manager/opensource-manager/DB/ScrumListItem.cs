@@ -19,7 +19,6 @@ namespace opensource_manager.DB
         public string Title { get; set; }
         public System.DateTime ScrumListItem_DateTime { get; set; }
         public int ColumnId { get; set; }
-        public string tmp { get; set; }
     
         public virtual Project Project { get; set; }
     }

@@ -198,6 +198,11 @@
     <FunctionImport Name="sp_DeleteScrumListItem">
       <Parameter Name="ScrumListId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_ChangeScrumListItemColumn">
+      <Parameter Name="FK_ProjectId" Mode="In" Type="Int32" />
+      <Parameter Name="TargetColumn" Mode="In" Type="Int32" />
+      <Parameter Name="CurrentColumn" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_RetriveAllProjects_Result">
     <Property Type="Int32" Name="ProjectId" Nullable="false" />
@@ -215,7 +220,6 @@
     <Property Name="ScrumListItem_DateTime" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Project" Relationship="Model.FK_Board_ToTable" FromRole="ScrumListItem" ToRole="Project" />
     <Property Name="ColumnId" Type="Int32" Nullable="false" />
-    <Property Name="tmp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <Association Name="FK_Board_ToTable">
     <End Type="Model.Project" Role="Project" Multiplicity="1" />

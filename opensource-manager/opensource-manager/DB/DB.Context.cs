@@ -106,5 +106,22 @@ namespace opensource_manager.DB
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DeleteScrumListItem", scrumListIdParameter);
         }
+    
+        public virtual int sp_ChangeScrumListItemColumn(Nullable<int> fK_ProjectId, Nullable<int> targetColumn, Nullable<int> currentColumn)
+        {
+            var fK_ProjectIdParameter = fK_ProjectId.HasValue ?
+                new ObjectParameter("FK_ProjectId", fK_ProjectId) :
+                new ObjectParameter("FK_ProjectId", typeof(int));
+    
+            var targetColumnParameter = targetColumn.HasValue ?
+                new ObjectParameter("TargetColumn", targetColumn) :
+                new ObjectParameter("TargetColumn", typeof(int));
+    
+            var currentColumnParameter = currentColumn.HasValue ?
+                new ObjectParameter("CurrentColumn", currentColumn) :
+                new ObjectParameter("CurrentColumn", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ChangeScrumListItemColumn", fK_ProjectIdParameter, targetColumnParameter, currentColumnParameter);
+        }
     }
 }

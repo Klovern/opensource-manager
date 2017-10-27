@@ -101,7 +101,6 @@
     <EntitySetMapping Name="ScrumListItems">
       <EntityTypeMapping TypeName="Model.ScrumListItem">
         <MappingFragment StoreEntitySet="ScrumListItems">
-          <ScalarProperty Name="tmp" ColumnName="tmp" />
           <ScalarProperty Name="ColumnId" ColumnName="ColumnId" />
           <ScalarProperty Name="ScrumListItem_DateTime" ColumnName="ScrumListItem_DateTime" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -132,5 +131,6 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_DeleteScrumListItem" FunctionName="Model.Store.sp_DeleteScrumListItem" />
+    <FunctionImportMapping FunctionImportName="sp_ChangeScrumListItemColumn" FunctionName="Model.Store.sp_ChangeScrumListItemColumn" />
   </EntityContainerMapping>
 </Mapping>

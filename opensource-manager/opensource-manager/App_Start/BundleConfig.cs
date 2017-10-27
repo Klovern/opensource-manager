@@ -32,7 +32,7 @@ namespace opensource_manager
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap-flaty.css",
                 "~/Content/Site.css",
-            "~/Content/nav-bar.less"));
+                "~/Content/nav-bar.less"));
         }
     }
 }

@@ -58,11 +58,16 @@ namespace opensource_manager.Controllers
 
         }
         [HttpPost]
-        [Route("{ProjectId}/board/changescrumlistcolumn")]
+        [Route("{ProjectId}/board/changelistcolumn")]
         public ActionResult ChangeScrumListColumn(ProjectViewModels.ChangeBoardListColumn listItem)
         {
 
-            return null;
+            using (var context = new Entities())
+            {
+                var queryresult = context.sp_ChangeScrumListItemColumn((int)listItem.FK_ProjectID,(int)listItem.TargetColumnId, (int)listItem.ColumnId);
+            }
+
+            return Json(new { success = true, responseText = "Columns has been switched!" }, JsonRequestBehavior.AllowGet);
         }
 
 
