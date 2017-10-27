@@ -103,6 +103,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ScrumListItem_DateTime" Type="datetime" Nullable="false" />
           <Property Name="ColumnId" Type="int" Nullable="false" />
+          <Property Name="tmp" Type="nchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK_Board_ToTable">
           <End Role="Project" Type="Self.Project" Multiplicity="1" />
@@ -479,6 +480,7 @@
           <Property Name="ScrumListItem_DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Project" Relationship="Model.FK_Board_ToTable" FromRole="ScrumListItem" ToRole="Project" />
           <Property Name="ColumnId" Type="Int32" Nullable="false" />
+          <Property Name="tmp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_Board_ToTable">
           <End Type="Model.Project" Role="Project" Multiplicity="1" />
@@ -497,6 +499,7 @@
           <Property Type="Int32" Name="FK_ProjectID" Nullable="false" />
           <Property Type="String" Name="Title" Nullable="false" MaxLength="128" />
           <Property Type="DateTime" Name="ScrumListItem_DateTime" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="ColumnId" Nullable="false" />
         </ComplexType>
         <EntityType Name="EventLog">
           <Key>
@@ -612,6 +615,7 @@
           <EntitySetMapping Name="ScrumListItems">
             <EntityTypeMapping TypeName="Model.ScrumListItem">
               <MappingFragment StoreEntitySet="ScrumListItems">
+                <ScalarProperty Name="tmp" ColumnName="tmp" />
                 <ScalarProperty Name="ColumnId" ColumnName="ColumnId" />
                 <ScalarProperty Name="ScrumListItem_DateTime" ColumnName="ScrumListItem_DateTime" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -628,6 +632,7 @@
                 <ScalarProperty Name="FK_ProjectID" ColumnName="FK_ProjectID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ScrumListItem_DateTime" ColumnName="ScrumListItem_DateTime" />
+                <ScalarProperty Name="ColumnId" ColumnName="ColumnId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

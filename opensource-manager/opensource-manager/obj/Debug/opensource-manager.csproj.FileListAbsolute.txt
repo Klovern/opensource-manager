@@ -20,7 +20,6 @@ C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-m
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\roslyn\System.AppContext.dll
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\roslyn\System.Collections.Immutable.dll
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\roslyn\System.Reflection.Metadata.dll
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\roslyn\vbc.exe
@@ -101,4 +100,4 @@ C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-m
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\obj\Debug\opensource-manager.dll
 C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\obj\Debug\opensource-manager.pdb
-C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\obj\Debug\opensource-manager.csprojResolveAssemblyReference.cache
+C:\Users\s4d\Documents\GitHub\opensource-manager\opensource-manager\opensource-manager\bin\roslyn\System.IO.FileSystem.dll

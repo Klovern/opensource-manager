@@ -215,6 +215,7 @@
     <Property Name="ScrumListItem_DateTime" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Project" Relationship="Model.FK_Board_ToTable" FromRole="ScrumListItem" ToRole="Project" />
     <Property Name="ColumnId" Type="Int32" Nullable="false" />
+    <Property Name="tmp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <Association Name="FK_Board_ToTable">
     <End Type="Model.Project" Role="Project" Multiplicity="1" />
@@ -233,6 +234,7 @@
     <Property Type="Int32" Name="FK_ProjectID" Nullable="false" />
     <Property Type="String" Name="Title" Nullable="false" MaxLength="128" />
     <Property Type="DateTime" Name="ScrumListItem_DateTime" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ColumnId" Nullable="false" />
   </ComplexType>
   <EntityType Name="EventLog">
     <Key>

@@ -62,5 +62,13 @@ namespace opensource_manager.Models
         {
             public int Id { get; set; }
         }
+
+        public class ChangeBoardListColumn
+        {
+            public int FK_ProjectID { get; set; }
+            public int BoardId { get; set; }
+            public int TargetColumnId { get; set; }
+            public int ColumnId { get; set; }
+        }
     }
 }

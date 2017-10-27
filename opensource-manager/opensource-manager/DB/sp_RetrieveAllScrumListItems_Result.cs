@@ -17,5 +17,6 @@ namespace opensource_manager.DB
         public int FK_ProjectID { get; set; }
         public string Title { get; set; }
         public System.DateTime ScrumListItem_DateTime { get; set; }
+        public int ColumnId { get; set; }
     }
 }

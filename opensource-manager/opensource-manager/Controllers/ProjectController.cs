@@ -57,6 +57,13 @@ namespace opensource_manager.Controllers
             return Json(new { success = true, responseText = "Removed a ListItem!" }, JsonRequestBehavior.AllowGet);
 
         }
+        [HttpPost]
+        [Route("{ProjectId}/board/changescrumlistcolumn")]
+        public ActionResult ChangeScrumListColumn(ProjectViewModels.ChangeBoardListColumn listItem)
+        {
+
+            return null;
+        }
 
 
         [HttpGet]
@@ -69,7 +76,7 @@ namespace opensource_manager.Controllers
 
             using (var context = new Entities())
             {
-                List<sp_RetrieveAllScrumListItems_Result> tmp = context.sp_RetrieveAllScrumListItems(ProjectId).ToList().OrderBy(x => x.ColumnId);
+                List<sp_RetrieveAllScrumListItems_Result> tmp = context.sp_RetrieveAllScrumListItems(ProjectId).OrderBy(x => x.ColumnId).ToList();
                 var currentProject = context.sp_RetriveAllProjects(User.Identity.Name).First(x => x.ProjectId == ProjectId);
                 Result.ResultList = tmp;
                 Result.Title = currentProject.Title;

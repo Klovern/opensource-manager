@@ -19,6 +19,7 @@
                     <span style="text-align: center">List action</span>
                     <hr />
                     <ul style="list-style-type: none;">
+                        <li><input class="changecolumn" type="number" id="{{ card.BoardId }}" data-column="{{ card.ColumnId }}"></li>
                         <li><a href="#">Add card</a></li>
                         <li><a href="#" class="deleteACard" id="{{ card.BoardId }}">Delete card</a></li>
                     </ul>
@@ -65,6 +66,16 @@
 
 <script>
     $(document).ready(function () {
+
+        $(".changecolumn").change(function() {
+
+            var model = {
+                FK_ProjectId: @ViewBag.data.id,
+                BoardId: $(this).attr('id'),
+                TargetColumnId: $(this).val(),
+
+        }
+        });
         $(".undo").click(function () {
             console.log("undo");
             $(".createCard").css("display", "none");
