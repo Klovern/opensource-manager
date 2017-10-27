@@ -101,6 +101,7 @@
     <EntitySetMapping Name="ScrumListItems">
       <EntityTypeMapping TypeName="Model.ScrumListItem">
         <MappingFragment StoreEntitySet="ScrumListItems">
+          <ScalarProperty Name="ColumnId" ColumnName="ColumnId" />
           <ScalarProperty Name="ScrumListItem_DateTime" ColumnName="ScrumListItem_DateTime" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="FK_ProjectID" ColumnName="FK_ProjectID" />

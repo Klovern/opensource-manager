@@ -97,6 +97,7 @@
     <Property Name="FK_ProjectID" Type="int" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ScrumListItem_DateTime" Type="datetime" Nullable="false" />
+    <Property Name="ColumnId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Board_ToTable">
     <End Role="Project" Type="Self.Project" Multiplicity="1" />

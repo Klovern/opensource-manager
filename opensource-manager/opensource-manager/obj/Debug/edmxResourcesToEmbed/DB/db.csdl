@@ -214,6 +214,7 @@
     <Property Name="Title" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="ScrumListItem_DateTime" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Project" Relationship="Model.FK_Board_ToTable" FromRole="ScrumListItem" ToRole="Project" />
+    <Property Name="ColumnId" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_Board_ToTable">
     <End Type="Model.Project" Role="Project" Multiplicity="1" />

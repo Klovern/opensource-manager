@@ -69,7 +69,7 @@ namespace opensource_manager.Controllers
 
             using (var context = new Entities())
             {
-                List<sp_RetrieveAllScrumListItems_Result> tmp = context.sp_RetrieveAllScrumListItems(ProjectId).ToList();
+                List<sp_RetrieveAllScrumListItems_Result> tmp = context.sp_RetrieveAllScrumListItems(ProjectId).ToList().OrderBy(x => x.ColumnId);
                 var currentProject = context.sp_RetriveAllProjects(User.Identity.Name).First(x => x.ProjectId == ProjectId);
                 Result.ResultList = tmp;
                 Result.Title = currentProject.Title;
