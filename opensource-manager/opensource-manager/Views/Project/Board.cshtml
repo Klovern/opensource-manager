@@ -19,8 +19,11 @@
                 <div class="dropdown-menu">
                     <span style="text-align: center">List action</span>
                     <hr />
+
+                    <select class="changecolumn"  id="{{ card.BoardId }}" data-column="{{ card.ColumnId }}" ng-repeat="select in ">
+                        <option value="{{select.value}}"> {{select.value}}</option>
+                    </select>
                     <ul style="list-style-type: none;">
-                        <li><input class="changecolumn" type="number" id="{{ card.BoardId }}" data-column="{{ card.ColumnId }}" max="@Enumerable.Count(ViewBag.data.ResultList)" min="1"></li>
                         <li><a href="#">Add card</a></li>
                         <li><a href="#" class="deleteACard" id="{{ card.BoardId }}">Delete card</a></li>
                     </ul>
@@ -66,9 +69,21 @@
 
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         $(".changecolumn").change(function() {
+            var colId;
+            if (($(this).attr('data-column')) >= @Enumerable.Count(ViewBag.data.ResultList)) {
+                colId = @Enumerable.Count(ViewBag.data.ResultList);
+        }
+            if (($(this).attr('data-column')) < 1) {
+                colId = 1;
+            }
+
+        if($(this))
+
+
+
 
             var model = {
                 FK_ProjectId: @ViewBag.data.id,
@@ -76,66 +91,66 @@
                 ColumnId: $(this).attr('data-column')
             }
 
-            $.ajax({
-                url: '/project/' + @ViewBag.data.id + '/board/changelistcolumn',
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(model),
-                success: function (recData) { location.reload(); },
-                error: function () { alert('A error'); }
-            });
-
-        });
-        $(".undo").click(function () {
-            console.log("undo");
-            $(".createCard").css("display", "none");
-            $(".addACard").css("display", "inherit");
-
-        });
-        $(".addACard").click(function () {
-            $(".createCard" + "#" + this.id).css("display", "inherit");
-            $(this).css("display", "none");
-            console.log("cliiick");
-        });
-        $(".addAList").click(function () {
-            $(".createList").css("display", "inherit");
-            $(this).css("display", "none");
-        });
-        $(".deleteACard").click(function() {
-
-
-            var model = { Id: $(this).attr('id') };
-            console.log(model.Id);
-
-            $.ajax({
-                url: '/project/' + @ViewBag.data.id + '/board/delete',
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(model),
-                success: function (recData) { location.reload(); },
-                error: function () { alert('A error'); }
-            });
-
+        $.ajax({
+            url: '/project/' + @ViewBag.data.id + '/board/changelistcolumn',
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(model),
+            success: function (recData) { location.reload(); },
+            error: function () { alert('A error'); }
         });
 
+    });
+    $(".undo").click(function () {
+        console.log("undo");
+        $(".createCard").css("display", "none");
+        $(".addACard").css("display", "inherit");
 
-        $(".save").click(function () {
-            var id = $(this).id;
-            var title = $(".createlist").val();
-            var model = {
-                Id: @ViewBag.data.id,
-                Title: title
-            };
+    });
+    $(".addACard").click(function () {
+        $(".createCard" + "#" + this.id).css("display", "inherit");
+        $(this).css("display", "none");
+        console.log("cliiick");
+    });
+    $(".addAList").click(function () {
+        $(".createList").css("display", "inherit");
+        $(this).css("display", "none");
+    });
+    $(".deleteACard").click(function() {
 
-            $.ajax({
-                url: '/project/' + id + '/board',
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(model),
-                success: function (recData) { location.reload(); },
-                error: function () { alert('A error'); }
-            });
+
+        var model = { Id: $(this).attr('id') };
+        console.log(model.Id);
+
+        $.ajax({
+            url: '/project/' + @ViewBag.data.id + '/board/delete',
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(model),
+            success: function (recData) { location.reload(); },
+            error: function () { alert('A error'); }
         });
+
+    });
+
+
+    $(".save").click(function () {
+        var id = $(this).id;
+        var title = $(".createlist").val();
+        var model = {
+            Id: @ViewBag.data.id,
+            Title: title
+        };
+
+        $.ajax({
+            url: '/project/' + id + '/board',
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(model),
+            success: function (recData) { location.reload(); },
+            error: function () { alert('A error'); }
+        });
+    });
     });
 </script>
 @Scripts.Render("~/bundles/opensource-manager")
